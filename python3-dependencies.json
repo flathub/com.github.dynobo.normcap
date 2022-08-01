@@ -37,7 +37,7 @@
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "Pillow",
-                        "packagetype": "bdist_wheel"
+                        "packagetype": "sdist"
                     }
                 },
                 {
