@@ -114,8 +114,7 @@
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/PySide6-Essentials/#files",
-                        "version-pattern": "PySide6-Essentials ([\\d\\.-]+)",
-                        "url-pattern": "(https://files.pythonhosted.org/packages/PySide6_Essentials-([\\d\\.-]+).*x86_64\\.whl)"
+                        "pattern": "href=\"(https://files.pythonhosted.org/packages/PySide6_Essentials-([\\d\\.-]+).*x86_64\\.whl)\""
                     }
                 },
                 {
@@ -125,8 +124,7 @@
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/shiboken6/#files",
-                        "version-pattern": "shiboken6 ([\\d\\.-]+)",
-                        "url-pattern": "(https://files.pythonhosted.org/packages/foo/shiboken6-([\\d\\.-]+).*x86_64\\.whl)"
+                        "pattern": "href=\"(https://files.pythonhosted.org/packages/shiboken6-([\\d\\.-]+).*x86_64\\.whl)\""
                     }
                 }
             ]
