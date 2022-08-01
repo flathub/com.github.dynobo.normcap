@@ -143,7 +143,8 @@
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "normcap",
-                        "packagetype": "bdist_wheel"
+                        "packagetype": "bdist_wheel",
+                        "is-main-source": true
                     }
                 }
             ]
