@@ -114,7 +114,7 @@
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "PySide6",
-                        "packagetype": "bdist_wheel"
+                        "packagetype": "sdist"
                     }
                 },
                 {
@@ -124,7 +124,7 @@
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "PySide6_Addons",
-                        "packagetype": "bdist_wheel"
+                        "packagetype": "sdist"
                     }
                 },
                 {
@@ -134,7 +134,7 @@
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "PySide6_Essentials",
-                        "packagetype": "bdist_wheel"
+                        "packagetype": "sdist"
                     }
                 },
                 {
@@ -144,7 +144,7 @@
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "shiboken6",
-                        "packagetype": "bdist_wheel"
+                        "packagetype": "sdist"
                     }
                 }
             ]
