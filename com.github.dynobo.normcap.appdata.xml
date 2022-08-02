@@ -11,13 +11,13 @@
         <ul>
             <li>Start NormCap</li>
             <li>Select a region on the screen</li>
-            <li>Wait a moment while the text is being extracted from that region</li>
-            <li>Paste the result from the clipboard to any application</li>
+            <li>Wait a moment while the text is being extracted</li>
+            <li>Paste the result from the clipboard to anywhere (ctrl+v)</li>
         </ul>
-        <p>Features:</p>
+        <p>Some notable features:</p>
         <ul>
             <li>Works offline (data doesn't leave your computer)</li>
-            <li>Supports many languages</li>
+            <li>Supports many different languages</li>
             <li>Supports multi monitor setups</li>
             <li>Heuristic parsing to improve results (optional)</li>
             <li>Available for Linux, Windows and macOS</li>
@@ -35,13 +35,16 @@
         </screenshot>
         <screenshot>
             <image>https://raw.githubusercontent.com/dynobo/normcap/main/assets/screenshot-1.png</image>
-        </screenshot>        
+        </screenshot>
         <screenshot>
             <image>https://raw.githubusercontent.com/dynobo/normcap/main/assets/screenshot-2.png</image>
-        </screenshot>        
+        </screenshot>
         <screenshot>
             <image>https://raw.githubusercontent.com/dynobo/normcap/main/assets/screenshot-3.png</image>
-        </screenshot>        
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/dynobo/normcap/main/assets/screenshot-4.png</image>
+        </screenshot>
     </screenshots>
 
     <releases>
