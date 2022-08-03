@@ -34,9 +34,6 @@
             <image>https://raw.githubusercontent.com/dynobo/normcap/main/assets/screenshot.png</image>
         </screenshot>
         <screenshot>
-            <image>https://raw.githubusercontent.com/dynobo/normcap/main/assets/screenshot-1.png</image>
-        </screenshot>
-        <screenshot>
             <image>https://raw.githubusercontent.com/dynobo/normcap/main/assets/screenshot-2.png</image>
         </screenshot>
         <screenshot>
@@ -48,6 +45,7 @@
     </screenshots>
 
     <releases>
+        <release version="0.3.7" date="2022-08-03"/>
         <release version="0.3.6" date="2022-08-01"/>
         <release version="0.3.4" type="stable" date="2022-06-25"/>
     </releases>
