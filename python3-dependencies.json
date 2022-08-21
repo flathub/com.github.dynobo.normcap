@@ -138,8 +138,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/34/86/660ddf322c6f901917dd55c520fcd12d8b542313e1d7ec93eace5762c3e5/normcap-0.3.7-py3-none-any.whl",
-                    "sha256": "ab353ce968d6659cb58c8e1dc277e73b154edc96018f38ea6395a7f1727bf20e",
+                    "url": "https://files.pythonhosted.org/packages/2d/5f/86c6d6624c156cdc8914eccc8f2891a4adaed7a123551caaf19aeb70b64f/normcap-0.3.8-py3-none-any.whl",
+                    "sha256": "2ec216fe8d0269d53301cce8177bad516096f885a31b8091a310a84ee25285bb",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "normcap",
