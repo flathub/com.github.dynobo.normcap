@@ -53,6 +53,25 @@
             ]
         },
         {
+            "name": "python3-certifi",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"certifi\" --no-build-isolation"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/e9/06/d3d367b7af6305b16f0d28ae2aaeb86154fa91f144f036c2d5002a5a202b/certifi-2022.6.15-py3-none-any.whl",
+                    "sha256": "fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "certifi",
+                        "packagetype": "bdist_wheel"
+                    }
+                }
+            ]
+        },
+        {
             "name": "python3-jeepney",
             "buildsystem": "simple",
             "build-commands": [
@@ -138,8 +157,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/2d/5f/86c6d6624c156cdc8914eccc8f2891a4adaed7a123551caaf19aeb70b64f/normcap-0.3.8-py3-none-any.whl",
-                    "sha256": "2ec216fe8d0269d53301cce8177bad516096f885a31b8091a310a84ee25285bb",
+                    "url": "https://files.pythonhosted.org/packages/10/3b/f147291c7dfbcde215a74ec6f2951043505b3a7e40b6a5f026478189c16a/normcap-0.3.9-py3-none-any.whl",
+                    "sha256": "31f8e236c9b7dd447546a5d33f69419d2c12aaad4b2ec028e4d7097265a79856",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "normcap",
