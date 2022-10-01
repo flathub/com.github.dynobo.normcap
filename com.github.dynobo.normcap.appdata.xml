@@ -8,21 +8,22 @@
     <description>
         <p>OCR powered screen-capture tool to capture information instead of images.</p>
         <p>Usage:</p>
-        <ul>
+        <ol>
             <li>Start NormCap</li>
             <li>Select a region on the screen</li>
-            <li>Wait a moment while the text is being extracted</li>
-            <li>Paste the result from the clipboard to anywhere (ctrl+v)</li>
-        </ul>
+            <li>Wait while the text is being extracted</li>
+            <li>Paste the result from the clipboard (ctrl+v)</li>
+        </ol>
         <p>Some notable features:</p>
         <ul>
             <li>Works offline (data doesn't leave your computer)</li>
             <li>Supports many different languages</li>
             <li>Supports multi monitor setups</li>
-            <li>Heuristic parsing to improve results (optional)</li>
-            <li>Available for Linux, Windows and macOS</li>
+            <li>Heuristic parsing to improve results</li>
             <li>Free and Open Source</li>
+            <li>Available for Linux, Windows and macOS</li>
         </ul>
+        <p>Tags: OCR, Tesseract, screenshot, recognition</p>
     </description>
 
     <url type="homepage">https://github.com/dynobo/normcap</url>
