@@ -32,8 +32,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/8c/92/2975b464d9926dc667020ed1abfa6276e68c3571dcb77e43347e15ee9eed/Pillow-9.2.0.tar.gz",
-                    "sha256": "75e636fd3e0fb872693f23ccb8a5ff2cd578801251f3a4f6854c6a5d437d3c04",
+                    "url": "https://files.pythonhosted.org/packages/16/11/da8d395299ca166aa56d9436e26fe8440e5443471de16ccd9a1d06f5993a/Pillow-9.3.0.tar.gz",
+                    "sha256": "c935a22a557a560108d780f9a0fc426dd7459940dc54faa49d83249c8d3e760f",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "Pillow",
@@ -128,8 +128,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/9f/14/063d8ce95381bada749bc5bb749e126e77453c582ef6a52eb6c447cbed2e/PySide6_Essentials-6.4.0-cp36-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "526434fb2ca94e54d07a7605716e4fb2e1b642440bce32c80a39e847e1710e65",
+                    "url": "https://files.pythonhosted.org/packages/bd/21/7c899328b7d46b0d0504149f4eb0de55bd0027c058e53cfd355d727c763e/PySide6_Essentials-6.4.0.1-cp37-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "1ba1c475568392db633da032799ff84e4b1c8e0ba863e88118b4f5ae0c312fb1",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/PySide6-Essentials/#files",
@@ -138,8 +138,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/bd/e1/c0acd4fa3a9cb2b908dd3b1551887b7a6e4608d13f48d5273023ce8a90f0/shiboken6-6.4.0-cp36-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "67b4731c55f5d74a72bede9a84691d64664cf7e1e76b606f58b39c8a61ea563d",
+                    "url": "https://files.pythonhosted.org/packages/6b/89/eb01d7015c25587d38dc1712ee6bb6032426e71726f900e22c7f0a18d2e7/shiboken6-6.4.0.1-cp37-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "e7f91a1f88ec27b2039df1ea4c92eb89cf7c93d80f93363db66f7a226dad9439",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/shiboken6/#files",
