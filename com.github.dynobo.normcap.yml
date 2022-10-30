@@ -5,8 +5,9 @@ sdk: org.kde.Sdk
 command: normcap
 finish-args:
   - --share=ipc
-  - --socket=fallback-x11
+  - --share=network
   - --socket=wayland
+  - --socket=fallback-x11
   - --device=dri
   - --env=TESSDATA_PREFIX=/app/share
   - --talk-name=org.freedesktop.Notifications
