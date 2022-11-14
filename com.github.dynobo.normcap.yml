@@ -11,7 +11,10 @@ finish-args:
   - --device=dri
   - --env=TESSDATA_PREFIX=/app/share
   - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.freedesktop.portal.*
   - --talk-name=org.kde.StatusNotifierWatcher
+  - --own-name=org.kde.*
+  - --talk-name=org.kde.*
 cleanup:
   - /sbin
   - /include
