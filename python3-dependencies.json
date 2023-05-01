@@ -4,74 +4,6 @@
     "build-commands": [],
     "modules": [
         {
-            "name": "python3-pytesseract",
-            "buildsystem": "simple",
-            "build-commands": [
-                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pytesseract\" --no-build-isolation"
-            ],
-            "sources": [
-                {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ed/35/a31aed2993e398f6b09a790a181a7927eb14610ee8bbf02dc14d31677f1c/packaging-23.0-py3-none-any.whl",
-                    "sha256": "714ac14496c3e68c99c29b00845f7a2b85f3bb6f1078fd9f72fd20f0570002b2",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "packaging",
-                        "packagetype": "bdist_wheel"
-                    }
-                },
-                {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/c5/54/ec007336f38d2d4ce61f3544af3e6855dacbf04a1ac8294f10cabe81146f/pytesseract-0.3.10-py3-none-any.whl",
-                    "sha256": "8f22cc98f765bf13517ead0c70effedb46c153540d25783e04014f28b55a5fc6",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "pytesseract",
-                        "packagetype": "bdist_wheel"
-                    }
-                },
-                {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/bc/07/830784e061fb94d67649f3e438ff63cfb902dec6d48ac75aeaaac7c7c30e/Pillow-9.4.0.tar.gz",
-                    "sha256": "a1c2d7780448eb93fbcc3789bf3916aa5720d942e37945f4056680317f1cd23e",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "Pillow",
-                        "packagetype": "sdist"
-                    }
-                },
-                {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/6c/10/a7d0fa5baea8fe7b50f448ab742f26f52b80bfca85ac2be9d35cdd9a3246/pyparsing-3.0.9-py3-none-any.whl",
-                    "sha256": "5026bae9a10eeaefb61dab2f09052b9f4307d44aee4eda64b309723d8d206bbc",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "pyparsing",
-                        "packagetype": "bdist_wheel"
-                    }
-                }
-            ]
-        },
-        {
-            "name": "python3-certifi",
-            "buildsystem": "simple",
-            "build-commands": [
-                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"certifi\" --no-build-isolation"
-            ],
-            "sources": [
-                {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/71/4c/3db2b8021bd6f2f0ceb0e088d6b2d49147671f25832fb17970e9b583d742/certifi-2022.12.7-py3-none-any.whl",
-                    "sha256": "4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "certifi",
-                        "packagetype": "bdist_wheel"
-                    }
-                }
-            ]
-        },
-        {
             "name": "python3-jeepney",
             "buildsystem": "simple",
             "build-commands": [
@@ -100,22 +32,12 @@
                 {
                     "type": "file",
                     "url": "https://files.pythonhosted.org/packages/e5/96/f43cdcb397f8a8cff6991ef8109385cc5ad9b0ad78c6dc2988b3b776fe49/PySide6_Essentials-6.4.2-cp37-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "8c3d37cca6e27f6da12b50b20e741d593ccc857bdcdb82d97f8f7c8bfe53639a",
-                    "x-checker-data": {
-                        "type": "html",
-                        "url": "https://pypi.org/project/PySide6-Essentials/#files",
-                        "pattern": "(https://files.pythonhosted.org/packages/.+/PySide6_Essentials-([\\d\\.-]+).+x86_64.whl)"
-                    }
+                    "sha256": "8c3d37cca6e27f6da12b50b20e741d593ccc857bdcdb82d97f8f7c8bfe53639a"
                 },
                 {
                     "type": "file",
                     "url": "https://files.pythonhosted.org/packages/24/f6/f1fe9220a616789a1c6b1b73670d8b1dec882ac730a8b534f963b3f26182/shiboken6-6.4.2-cp37-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "0616c1a12d1e51e680595b3940b986275c1df952a751416a0730a59e5b90105f",
-                    "x-checker-data": {
-                        "type": "html",
-                        "url": "https://pypi.org/project/shiboken6/#files",
-                        "pattern": "(https://files.pythonhosted.org/packages/.+/shiboken6-([\\d\\.-]+).+x86_64.whl)"
-                    }
+                    "sha256": "0616c1a12d1e51e680595b3940b986275c1df952a751416a0730a59e5b90105f"
                 }
             ]
         },
@@ -128,8 +50,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/c6/93/fb491e9ebfaa71b851033204de758b41a599f78ba1a999ac5ed4e827dd34/normcap-0.4.0-py3-none-any.whl",
-                    "sha256": "cd0f2aa075b093597d9c7af4e444f75b4651e3d5287564badb7f9b49271fdf9a",
+                    "url": "https://files.pythonhosted.org/packages/f4/03/4816d2534ae2e4d0891701c1797e1cfdbd8a2dbdede05cb066a0f26cd7d9/normcap-0.4.1-py3-none-any.whl",
+                    "sha256": "12823dec039f312725431bedff567390ebbf616004d5b694c067a6c796ca13cf",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "normcap",
