@@ -4,25 +4,6 @@
     "build-commands": [],
     "modules": [
         {
-            "name": "python3-jeepney",
-            "buildsystem": "simple",
-            "build-commands": [
-                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"jeepney\" --no-build-isolation"
-            ],
-            "sources": [
-                {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ae/72/2a1e2290f1ab1e06f71f3d0f1646c9e4634e70e1d37491535e19266e8dc9/jeepney-0.8.0-py3-none-any.whl",
-                    "sha256": "c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "jeepney",
-                        "packagetype": "bdist_wheel"
-                    }
-                }
-            ]
-        },
-        {
             "name": "python3-pyside6",
             "buildsystem": "simple",
             "build-commands": [
@@ -50,8 +31,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/f4/03/4816d2534ae2e4d0891701c1797e1cfdbd8a2dbdede05cb066a0f26cd7d9/normcap-0.4.1-py3-none-any.whl",
-                    "sha256": "12823dec039f312725431bedff567390ebbf616004d5b694c067a6c796ca13cf",
+                    "url": "https://files.pythonhosted.org/packages/4f/cf/9a283d189e747789ff3b884cbf3589231eca03768100ef384ecaa960dc69/normcap-0.4.2-py3-none-any.whl",
+                    "sha256": "2eb3aa228dbd41c4d58de75b4fb33b1d138af0a33a6bc06c8a0d9006f3c85c59",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "normcap",
