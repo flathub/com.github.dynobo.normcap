@@ -1,6 +1,6 @@
 app-id: com.github.dynobo.normcap
 runtime: org.kde.Platform
-runtime-version: 6.4
+runtime-version: 6.5
 sdk: org.kde.Sdk
 command: normcap
 finish-args:
@@ -22,8 +22,8 @@ cleanup:
   - /share/pkgconfig
   - /share/man
   - /share/cmake*
-  - '*.a'
-  - '*.la'
+  - "*.a"
+  - "*.la"
 
 modules:
   - name: kerberos
@@ -83,9 +83,12 @@ modules:
   - name: metadata
     buildsystem: simple
     build-commands:
-      - install -Dm644 com.github.dynobo.normcap.svg /app/share/icons/hicolor/scalable/apps/com.github.dynobo.normcap.svg
-      - install -Dm644 com.github.dynobo.normcap.desktop /app/share/applications/com.github.dynobo.normcap.desktop
-      - install -Dm644 com.github.dynobo.normcap.appdata.xml /app/share/appdata/com.github.dynobo.normcap.appdata.xml
+      - install -Dm644 com.github.dynobo.normcap.svg
+        /app/share/icons/hicolor/scalable/apps/com.github.dynobo.normcap.svg
+      - install -Dm644 com.github.dynobo.normcap.desktop
+        /app/share/applications/com.github.dynobo.normcap.desktop
+      - install -Dm644 com.github.dynobo.normcap.appdata.xml
+        /app/share/appdata/com.github.dynobo.normcap.appdata.xml
     sources:
       - type: file
         path: com.github.dynobo.normcap.svg
