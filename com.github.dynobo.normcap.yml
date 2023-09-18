@@ -47,8 +47,8 @@ modules:
     builddir: true
     sources:
       - type: archive
-        url: https://github.com/tesseract-ocr/tesseract/archive/refs/tags/5.2.0.zip
-        sha256: f30e343cb93ca77f1fad013aeb87edb9191dcd1c7d4ee55d425f70c2af7817a1
+        url: https://github.com/tesseract-ocr/tesseract/archive/refs/tags/5.3.2.zip
+        sha256: ed9c01eecc34cde56ff31c236d7c3a3d397e332bbdb00b095e2dc6e4b9d5621e
 
   - name: tessdata-fast
     buildsystem: simple
