@@ -12,8 +12,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/25/b9/d1bd6d15dd64e175b8a7d13dea56b1ca9285195134e31e814422f4fd8a32/PySide6_Essentials-6.5.1-cp37-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "b893e901724376c556abc6e4e7a88ec2b60483752c4af62692f71ae01d8c6824",
+                    "url": "https://files.pythonhosted.org/packages/e5/93/98f660dde373e2fba01caea8bbb2c986f94f02e32afab7b577df03ef744f/PySide6_Essentials-6.5.3-cp37-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "45580138be91f5fdcefb4d28dadb56d3640eb658575af97b49057e10c22a024d",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/PySide6-Essentials/#files",
@@ -22,8 +22,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/b3/27/c8a9692dab90ab9d1e7b5cd79177796531bc973b042cad50190211465fe8/shiboken6-6.5.1-cp37-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "d9b3724772d5e98868ea6718a8d866ab3591ee3300febc74b00b32aaa0e4d295",
+                    "url": "https://files.pythonhosted.org/packages/55/b4/370f7a1dd3c02150b60073f7a46418fa2932f8d3b864bc58883154c6a423/shiboken6-6.5.3-cp37-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "4cdda98df511243c40f1dd4d9eac25a7191c2583ac673147ecdae0ffa3b9223f",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/shiboken6/#files",
