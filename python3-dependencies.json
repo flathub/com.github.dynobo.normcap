@@ -22,8 +22,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/b3/27/c8a9692dab90ab9d1e7b5cd79177796531bc973b042cad50190211465fe8/shiboken6-6.5.1-cp37-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "d9b3724772d5e98868ea6718a8d866ab3591ee3300febc74b00b32aaa0e4d295",
+                    "url": "https://files.pythonhosted.org/packages/6b/eb/72572b8db7713305b6a15ea7aa04bd7240cd9d84c33cc790218532fc0f43/shiboken6-6.6.0-cp38-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "456b89fb4b323e0c5002d92e4d346b48bb4e709db801208df8a0d6b4f5efc33d",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/shiboken6/#files",
