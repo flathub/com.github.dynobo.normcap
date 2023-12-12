@@ -12,8 +12,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/25/b9/d1bd6d15dd64e175b8a7d13dea56b1ca9285195134e31e814422f4fd8a32/PySide6_Essentials-6.5.1-cp37-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "b893e901724376c556abc6e4e7a88ec2b60483752c4af62692f71ae01d8c6824",
+                    "url": "https://files.pythonhosted.org/packages/56/65/50d0ced768b717f709a5ab224b648eb533a862efd0cde67d19c2727200b0/PySide6_Essentials-6.6.1-cp38-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "c7185616083eab6f42eaed598d97d49fac4f60ae2e7415194140d54f58c2b42c",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/PySide6-Essentials/#files",
@@ -22,8 +22,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/b3/27/c8a9692dab90ab9d1e7b5cd79177796531bc973b042cad50190211465fe8/shiboken6-6.5.1-cp37-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "d9b3724772d5e98868ea6718a8d866ab3591ee3300febc74b00b32aaa0e4d295",
+                    "url": "https://files.pythonhosted.org/packages/bb/72/e54f758e49e8da0dcd9490d006c41a814b0e56898ce4ca054d60cdba97bd/shiboken6-6.6.1-cp38-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "fb102e4bc210006f0cdd0ce38e1aaaaf792bd871f02a2b3f01d07922c5cf4c59",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/shiboken6/#files",
@@ -41,8 +41,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/cb/0c/d0bf2dc1d22c5c2a1d83fd6967b442cc9edfd4e53e0d55524c91c11a57c0/normcap-0.4.4-py3-none-any.whl",
-                    "sha256": "e00d933bc1a2c2b028d072488e504fba98ee5c1d0bea4ce29caa1cf93e915d59",
+                    "url": "https://files.pythonhosted.org/packages/be/ca/b1562271d4385be58d82a6cfbb135a21145a9bb829c117ab86dc61816fcb/normcap-0.5.2-py3-none-any.whl",
+                    "sha256": "1e36dd0ba845102f006f6cbafe3ef4aaad52cba2939a08baa976a0ff70ab2658",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "normcap",
