@@ -5,7 +5,7 @@ trap "kill $SERVER_PID" EXIT
 
 cd ../normcap
 rm ./dist/*.whl
-poetry build -f wheel
+hatch build -t wheel
 HASH=$(sha256sum dist/*.whl | sed 's/\s.*//')
 
 cd ../normcap-flathub
