@@ -8,4 +8,4 @@ flatpak-builder --install --user --force-clean build-dir com.github.dynobo.normc
 
 ## Application Source
 
-See [github.com/dynobo/normcap](https://github.com/dynobo/normcap).
+See [dynobo/normcap](https://github.com/dynobo/normcap).
