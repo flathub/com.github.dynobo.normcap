@@ -11,10 +11,12 @@ finish-args:
   - --device=dri
   - --env=TESSDATA_PREFIX=/app/share
   - --talk-name=org.freedesktop.Notifications # Wayland Notification
+  - --talk-name=org.gnome.Shell # Extensions, Eval
   - --talk-name=org.gnome.Shell.Screenshot # Gnome Shell screenshot
+  - --talk-name=org.gnome.Shell.Extensions # Gnome Shell screenshot
+  - --talk-name=org.gnome.Shell.Extensions.Window # Gnome Shell screenshot
   - --talk-name=org.kde.StatusNotifierWatcher # KDE system tray
   - --talk-name=org.kde.KWin # Window positioning
-  - --talk-name=org.gnome.Shell # Extensions, Eval
 cleanup:
   - /sbin
   - /include
