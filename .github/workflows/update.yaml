@@ -4,6 +4,7 @@ run-name: pr-for-release
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   build:

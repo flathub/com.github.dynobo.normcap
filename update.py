@@ -1,4 +1,5 @@
 import json
+import re
 import urllib.request
 import xml.etree.ElementTree as ET
 from copy import deepcopy
@@ -10,6 +11,7 @@ PYPI = "https://pypi.org/pypi/{package}/json"
 PROJECT_ROOT = Path(__file__).parent
 PYTHON_DEPS_JSON = PROJECT_ROOT / "python3-dependencies.json"
 MANIFEST_XML = PROJECT_ROOT / "com.github.dynobo.normcap.appdata.xml"
+FLATPAK_YAML = PROJECT_ROOT / "com.github.dynobo.normcap.yml"
 
 MODULE_TEMPLATE = {
     "name": "python3-PACKAGE",
@@ -83,6 +85,17 @@ def update_python_deps(deps: list[str]):
     PYTHON_DEPS_JSON.write_text(json.dumps(python_deps, indent=4))
 
 
+def update_runtime(version: str):
+    text = FLATPAK_YAML.read_text()
+    text = re.sub(
+        r"(runtime-version:) \d+\.\d+$",
+        f"\\1 {version}",
+        text,
+        flags=re.RegexFlag.MULTILINE,
+    )
+    FLATPAK_YAML.write_text(text)
+
+
 def main():
     normcap = get_pypi_info(package="normcap")
     normcap_version = normcap["info"]["version"]
@@ -95,6 +108,11 @@ def main():
     deps.append(f"normcap=={normcap_version}")
 
     update_python_deps(deps=deps)
+
+    pyside_dep = [d for d in deps if d.lower().startswith("pyside")][0]
+    pyside_version = pyside_dep.split("==")[-1].split(".")
+    runtime_version = f"{pyside_version[0]}.{pyside_version[1]}"
+    update_runtime(version=runtime_version)
 
 
 if __name__ == "__main__":
