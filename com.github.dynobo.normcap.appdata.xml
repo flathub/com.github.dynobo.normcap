@@ -4,6 +4,7 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0-or-later</project_license>
     <name>NormCap</name>
+    <developer_name>dynobo</developer_name>
     <summary>Extract text from anywhere on the screen</summary>
     <description>
         <p>OCR powered screen-capture tool to capture information instead of images.</p>
