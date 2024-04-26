@@ -10,6 +10,7 @@ finish-args:
   - --socket=fallback-x11
   - --device=dri
   - --env=TESSDATA_PREFIX=/app/share
+  - --filesystem=xdg-pictures
   - --talk-name=org.freedesktop.Notifications # Wayland Notification
   - --talk-name=org.gnome.Shell # Extensions, Eval
   - --talk-name=org.gnome.Shell.Screenshot # Gnome Shell screenshot
