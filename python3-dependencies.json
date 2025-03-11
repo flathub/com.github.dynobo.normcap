@@ -12,8 +12,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/d8/f7/7a8a0c3a87fc9a898a521ae34aea5806f71f7bef1a0e032a6d954550fcea/PySide6_Essentials-6.7.0-cp39-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "e013238fe40596b804068e34ac173514943a41bf8e5fbb4edfc7c30b00431bd5",
+                    "url": "https://files.pythonhosted.org/packages/d2/f9/aa4ff511ff1f3dd177f7e8f5a635e03fe578fa2045c8d6be4577e7db3b28/PySide6_Essentials-6.8.2.1-cp39-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "aece5df185790e798f05d566662c5c2dca8421cb9ec7bdad63398acc5ce9e250",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/PySide6-Essentials/#files",
@@ -22,8 +22,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/6a/05/a2f348685041495be25709f85ca30d9f79fdc4f3bcd4f8da8b980b1de071/shiboken6-6.7.0-cp39-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "7887ba7ecfddb09ee9966325c1e229a17f3f444b0257b77cb7838792287d3e05",
+                    "url": "https://files.pythonhosted.org/packages/7b/ff/ab4f287b9573e50b5a47c10e2af8feb5abecc3c7431bd5deec135efc969e/shiboken6-6.8.2.1-cp39-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "c83e90056f13d0872cc4d2b7bf60b6d6e3b1b172f1f91910c0ba5b641af01758",
                     "x-checker-data": {
                         "type": "html",
                         "url": "https://pypi.org/project/shiboken6/#files",
@@ -41,8 +41,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ae/72/2a1e2290f1ab1e06f71f3d0f1646c9e4634e70e1d37491535e19266e8dc9/jeepney-0.8.0-py3-none-any.whl",
-                    "sha256": "c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755",
+                    "url": "https://files.pythonhosted.org/packages/b2/a3/e137168c9c44d18eff0376253da9f1e9234d0239e0ee230d2fee6cea8e55/jeepney-0.9.0-py3-none-any.whl",
+                    "sha256": "97e5714520c16fc0a45695e5365a2e11b81ea79bba796e26f9f1d178cb182683",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "jeepney",
@@ -60,8 +60,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ba/ca/9baec6655320766771fcb0076e7d74209592252ca517976b9e5f079f68e8/normcap-0.5.8-py3-none-any.whl",
-                    "sha256": "26cd980939063fb9ec3f252f5bdc0b6da2858217e2cdd51ce696459cfa2d857d",
+                    "url": "https://files.pythonhosted.org/packages/54/57/8e55e998a510d69b561385aeb03273f7607985c0819df122affba3f22857/normcap-0.5.9-py3-none-any.whl",
+                    "sha256": "6a1adfdad46d61972b07e620788b4c3b071ff329c2b62f1caafb0b64a602fec2",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "normcap",
