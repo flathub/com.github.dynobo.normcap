@@ -1,0 +1,25 @@
+name: Prepare pull request for release
+
+run-name: pr-for-release
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v4
+    - name: Run updater
+      run: python update.py
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v7
+      with:
+        commit-message: Update to new NormCap version
+        branch: update
+        delete-branch: true
+        title: 'Update for new release'
+        assignees: dynobo
+        reviewers: dynobo
