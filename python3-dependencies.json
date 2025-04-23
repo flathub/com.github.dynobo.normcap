@@ -4,31 +4,30 @@
     "build-commands": [],
     "modules": [
         {
-            "name": "python3-pyside6",
+            "name": "python3-shiboken6",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"PySide6-Essentials\" --no-build-isolation"
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation \"shiboken6\""
             ],
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/d8/f7/7a8a0c3a87fc9a898a521ae34aea5806f71f7bef1a0e032a6d954550fcea/PySide6_Essentials-6.7.0-cp39-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "e013238fe40596b804068e34ac173514943a41bf8e5fbb4edfc7c30b00431bd5",
-                    "x-checker-data": {
-                        "type": "html",
-                        "url": "https://pypi.org/project/PySide6-Essentials/#files",
-                        "pattern": "(https://files.pythonhosted.org/packages/.+/PySide6_Essentials-([\\d\\.-]+).+x86_64.whl)"
-                    }
-                },
+                    "url": "https://files.pythonhosted.org/packages/ac/31/cd538b806b83c9d567e498c4c3d11e35baa9e989aadd5ec7c2caa52b571d/shiboken6-6.7.1-cp39-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "6322b7a6232fc93eac0b11489007734438ae1e6213429fd6d7521d04072c2f87"
+                }
+            ]
+        },
+        {
+            "name": "python3-pyside6-essentials",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation \"pyside6-essentials\""
+            ],
+            "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/6a/05/a2f348685041495be25709f85ca30d9f79fdc4f3bcd4f8da8b980b1de071/shiboken6-6.7.0-cp39-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "7887ba7ecfddb09ee9966325c1e229a17f3f444b0257b77cb7838792287d3e05",
-                    "x-checker-data": {
-                        "type": "html",
-                        "url": "https://pypi.org/project/shiboken6/#files",
-                        "pattern": "(https://files.pythonhosted.org/packages/.+/shiboken6-([\\d\\.-]+).+x86_64.whl)"
-                    }
+                    "url": "https://files.pythonhosted.org/packages/5f/6e/387c24fe38523e2097af16e4f5a8b51643f900295088e204456784bca101/PySide6_Essentials-6.7.1-cp39-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "b2d70dc4376c1b1ff5b2988a428a0ed5a889173ce9a0b56803468063d0ef7c75"
                 }
             ]
         },
@@ -36,18 +35,13 @@
             "name": "python3-jeepney",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"jeepney\" --no-build-isolation"
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation \"jeepney\""
             ],
             "sources": [
                 {
                     "type": "file",
                     "url": "https://files.pythonhosted.org/packages/ae/72/2a1e2290f1ab1e06f71f3d0f1646c9e4634e70e1d37491535e19266e8dc9/jeepney-0.8.0-py3-none-any.whl",
-                    "sha256": "c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "jeepney",
-                        "packagetype": "bdist_wheel"
-                    }
+                    "sha256": "c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755"
                 }
             ]
         },
@@ -55,19 +49,13 @@
             "name": "python3-normcap",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"normcap\" --no-build-isolation"
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation \"normcap\""
             ],
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ba/ca/9baec6655320766771fcb0076e7d74209592252ca517976b9e5f079f68e8/normcap-0.5.8-py3-none-any.whl",
-                    "sha256": "26cd980939063fb9ec3f252f5bdc0b6da2858217e2cdd51ce696459cfa2d857d",
-                    "x-checker-data": {
-                        "type": "pypi",
-                        "name": "normcap",
-                        "packagetype": "bdist_wheel",
-                        "is-main-source": true
-                    }
+                    "url": "https://files.pythonhosted.org/packages/54/57/8e55e998a510d69b561385aeb03273f7607985c0819df122affba3f22857/normcap-0.5.9-py3-none-any.whl",
+                    "sha256": "6a1adfdad46d61972b07e620788b4c3b071ff329c2b62f1caafb0b64a602fec2"
                 }
             ]
         }
