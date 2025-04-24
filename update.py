@@ -60,6 +60,7 @@ def add_release_to_manifest(version: str):
         )
         releases.insert(0, new_release)
 
+    ET.indent(tree, "  ")
     tree.write(MANIFEST_XML, encoding="utf-8", xml_declaration=True)
 
 
