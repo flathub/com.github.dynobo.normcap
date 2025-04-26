@@ -1,12 +1,13 @@
 import json
 import re
+import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 from copy import deepcopy
 from datetime import date
 from pathlib import Path
 
-PYPI = "https://pypi.org/pypi/{package}/json"
+PYPI = "https://pypi.org/pypi/{package}{version}/json"
 
 PROJECT_ROOT = Path(__file__).parent
 PYTHON_DEPS_JSON = PROJECT_ROOT / "python3-dependencies.json"
@@ -23,25 +24,34 @@ MODULE_TEMPLATE = {
 }
 
 
-def get_pypi_info(package: str):
-    with urllib.request.urlopen(PYPI.format(package=package)) as response:
+def get_pypi_info(package: str, version: str | None = None):
+    version = f"/{version}" if version else ""
+    url = PYPI.format(package=package, version=version)
+    with urllib.request.urlopen(url) as response:
         json_text = response.read()
     return json.loads(json_text)
 
 
 def is_suitable(filename: str):
+    filename = filename.lower()
     if ".whl" not in filename:
         return False
-    if "manylinux" in filename and "x86" in filename:
+    if all(s in filename for s in ["shiboken", "manylinux", "x86"]):
         return True
-    if "none-any" in filename:
+    if all(s in filename for s in ["pyside6", "manylinux", "x86"]):
+        return True
+    if all(s in filename for s in ["zxing", "manylinux", "x86", "cp312"]):
+        return True
+    if all(s in filename for s in ["jeepney", "none-any"]):
+        return True
+    if all(s in filename for s in ["normcap", "none-any"]):
         return True
     return False
 
 
 def get_release_info(package: str, version: str):
-    package_info = get_pypi_info(package=package)
-    files = package_info["releases"][version]
+    package_info = get_pypi_info(package=package, version=version)
+    files = package_info["urls"]
     files = [f for f in files if is_suitable(f["filename"])]
     if len(files) != 1:
         raise ValueError(
@@ -98,7 +108,13 @@ def update_runtime(version: str):
 
 
 def main():
-    normcap = get_pypi_info(package="normcap")
+    version_arg = sys.argv[1] if len(sys.argv) > 2 else None
+    if version_arg == "latest":
+        version_arg = None
+
+    version_arg = "0.6.0-beta1"
+    normcap = get_pypi_info(package="normcap", version=version_arg)
+
     normcap_version = normcap["info"]["version"]
     normcap_deps = normcap["info"]["requires_dist"]
 

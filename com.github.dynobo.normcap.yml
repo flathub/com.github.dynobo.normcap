@@ -11,10 +11,9 @@ finish-args:
   - --device=dri
   - --env=TESSDATA_PREFIX=/app/share
   - --filesystem=xdg-pictures # Portal saves screenshots here
-  - --talk-name=org.freedesktop.portal.* # Screenshot, Notifications, Selection 
-  - --talk-name=org.gnome.Shell.Extensions.Window # Window call extension
+  - --talk-name=org.gnome.Shell.* # Window call extension
   - --talk-name=org.kde.StatusNotifierWatcher # KDE system tray
-  - --talk-name=org.kde.KWin # Window positioning on KDE
+  - --talk-name=org.kde.KWin.* # Window positioning on KDE
 cleanup:
   - /sbin
   - /include

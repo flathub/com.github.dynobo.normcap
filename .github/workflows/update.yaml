@@ -4,6 +4,11 @@ run-name: pr-for-release
 
 on:
   workflow_dispatch:
+    version:
+      description: 'Python package version to update to'
+      required: True
+      default: latest
+      type: string
 
 jobs:
   build:
@@ -12,7 +17,7 @@ jobs:
     - name: Check out Git repository
       uses: actions/checkout@v4
     - name: Run updater
-      run: python update.py
+      run: python update.py ${{ inputs.version }} 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v7
       with:
