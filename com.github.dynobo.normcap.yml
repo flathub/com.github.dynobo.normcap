@@ -10,14 +10,11 @@ finish-args:
   - --socket=fallback-x11
   - --device=dri
   - --env=TESSDATA_PREFIX=/app/share
-  - --filesystem=xdg-pictures
-  - --talk-name=org.freedesktop.Notifications # Wayland Notification
-  - --talk-name=org.gnome.Shell # Extensions, Eval
-  - --talk-name=org.gnome.Shell.Screenshot # Gnome Shell screenshot
-  - --talk-name=org.gnome.Shell.Extensions # Gnome Shell screenshot
-  - --talk-name=org.gnome.Shell.Extensions.Window # Gnome Shell screenshot
+  - --filesystem=xdg-pictures # Portal saves screenshots here
+  - --talk-name=org.freedesktop.portal.* # Screenshot, Notifications, Selection 
+  - --talk-name=org.gnome.Shell.Extensions.Window # Window call extension
   - --talk-name=org.kde.StatusNotifierWatcher # KDE system tray
-  - --talk-name=org.kde.KWin # Window positioning
+  - --talk-name=org.kde.KWin # Window positioning on KDE
 cleanup:
   - /sbin
   - /include
