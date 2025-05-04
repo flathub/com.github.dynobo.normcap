@@ -112,7 +112,6 @@ def main():
     if version_arg == "latest":
         version_arg = None
 
-    version_arg = "0.6.0-beta1"
     normcap = get_pypi_info(package="normcap", version=version_arg)
 
     normcap_version = normcap["info"]["version"]
