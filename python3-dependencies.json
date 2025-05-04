@@ -4,6 +4,20 @@
     "build-commands": [],
     "modules": [
         {
+            "name": "python3-zxing-cpp",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation \"zxing-cpp\""
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/95/30/3143bf75944d65c9432349a79b97f9414965a44875ec9eeb5745592b4ecd/zxing_cpp-2.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+                    "sha256": "dec2805c0e9dec0d7707c97ca5196f98d2730d2dfcea80442807123b9f8ec850"
+                }
+            ]
+        },
+        {
             "name": "python3-shiboken6",
             "buildsystem": "simple",
             "build-commands": [
@@ -12,8 +26,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ac/31/cd538b806b83c9d567e498c4c3d11e35baa9e989aadd5ec7c2caa52b571d/shiboken6-6.7.1-cp39-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "6322b7a6232fc93eac0b11489007734438ae1e6213429fd6d7521d04072c2f87"
+                    "url": "https://files.pythonhosted.org/packages/45/d3/f6ddef22d4f2ac11c079157ad3714d9b1fb9324d9cd3b200f824923fe2ba/shiboken6-6.9.0-cp39-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "3f585caae5b814a7e23308db0a077355a7dc20c34d58ca4c339ff7625e9a1936"
                 }
             ]
         },
@@ -26,8 +40,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/5f/6e/387c24fe38523e2097af16e4f5a8b51643f900295088e204456784bca101/PySide6_Essentials-6.7.1-cp39-abi3-manylinux_2_28_x86_64.whl",
-                    "sha256": "b2d70dc4376c1b1ff5b2988a428a0ed5a889173ce9a0b56803468063d0ef7c75"
+                    "url": "https://files.pythonhosted.org/packages/9e/fd/46b713827007162de9108b22d01702868e75f31585da7eca5a79e3435590/PySide6_Essentials-6.9.0-cp39-abi3-manylinux_2_28_x86_64.whl",
+                    "sha256": "45eaf7f17688d1991f39680dbfd3c41674f3cbb78f278aa10fe0b5f2f31c1989"
                 }
             ]
         },
@@ -40,8 +54,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ae/72/2a1e2290f1ab1e06f71f3d0f1646c9e4634e70e1d37491535e19266e8dc9/jeepney-0.8.0-py3-none-any.whl",
-                    "sha256": "c0a454ad016ca575060802ee4d590dd912e35c122fa04e70306de3d076cce755"
+                    "url": "https://files.pythonhosted.org/packages/b2/a3/e137168c9c44d18eff0376253da9f1e9234d0239e0ee230d2fee6cea8e55/jeepney-0.9.0-py3-none-any.whl",
+                    "sha256": "97e5714520c16fc0a45695e5365a2e11b81ea79bba796e26f9f1d178cb182683"
                 }
             ]
         },
@@ -54,8 +68,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/54/57/8e55e998a510d69b561385aeb03273f7607985c0819df122affba3f22857/normcap-0.5.9-py3-none-any.whl",
-                    "sha256": "6a1adfdad46d61972b07e620788b4c3b071ff329c2b62f1caafb0b64a602fec2"
+                    "url": "https://files.pythonhosted.org/packages/c0/8d/cd7fe3397843b7c0c15560e6383f8a642201146c60177250f6dc2585c5e4/normcap-0.6.0b1-py3-none-any.whl",
+                    "sha256": "06f4fc7ef71dfbe1ead5ff2ad723ffef6f9a3ee7bcec790bc18cd36a108c4bb6"
                 }
             ]
         }
