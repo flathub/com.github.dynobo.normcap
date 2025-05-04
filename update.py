@@ -108,12 +108,14 @@ def update_runtime(version: str):
 
 
 def main():
-    version_arg = sys.argv[1] if len(sys.argv) > 2 else None
+    version_arg = sys.argv[1] if len(sys.argv) >= 2 else None
     if version_arg == "latest":
         version_arg = None
 
-    normcap = get_pypi_info(package="normcap", version=version_arg)
+    print(sys.argv)
+    version_arg = "0.6.0-beta2"
 
+    normcap = get_pypi_info(package="normcap", version=version_arg)
     normcap_version = normcap["info"]["version"]
     normcap_deps = normcap["info"]["requires_dist"]
 
