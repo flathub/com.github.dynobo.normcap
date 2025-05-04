@@ -4,11 +4,12 @@ run-name: pr-for-release
 
 on:
   workflow_dispatch:
-    version:
-      description: 'Python package version to update to'
-      required: True
-      default: latest
-      type: string
+    inputs:
+      version:
+        description: 'Python package version to update to'
+        required: True
+        default: latest
+        type: string
 
 jobs:
   build:
