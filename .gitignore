@@ -1,2 +1,7 @@
 .flatpak-builder/
-build/
+.pytest_cache/
+.vscode/
+repo/
+build-dir/
+normcap/
+*.flatpak
