@@ -95,4 +95,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/dynobo/normcap.git
-        commit: 0d7b7f110215aa435932457388ccd0435ae23993
+        commit: ab46b1d534a417e49887a6fa9ce66b4a6629beb3
