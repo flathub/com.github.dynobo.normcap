@@ -69,7 +69,7 @@ def is_suitable(filename: str):
         return True
     if all(s in filename for s in ["pyside6", "manylinux", "x86"]):
         return True
-    if all(s in filename for s in ["zxing", "manylinux", "x86"]):
+    if all(s in filename for s in ["zxing", "abi3", "manylinux", "x86"]):
         return True
     if all(s in filename for s in ["jeepney", "none-any"]):
         return True
@@ -83,8 +83,14 @@ def get_release_info(package: str, version: str, python_version: str | None = No
     files = get_pypi_info(package=package, version=version)["urls"]
     files = [f for f in files if is_suitable(f["filename"])]
 
+    python_version_int = int(python_version.replace('.', ''))
     if len(files) != 1 and python_version:
-        files = [f for f in files if f"cp{python_version.replace('.', '')}" in f["url"]]
+        # If there's no build for current python version, try lower ones.
+        # This is necessary for zxing-cpp which now ship free-threaded version (unsupported by current KDE runtime)
+        for i in range( 5):
+            files = [f for f in files if f"cp{python_version_int - i}" in f["url"]]
+            if files:
+                break 
 
     if len(files) != 1:
         raise ValueError(
