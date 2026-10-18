@@ -6,12 +6,11 @@ import logging
 import re
 import shutil
 import subprocess
+import tomllib
 import urllib.request
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
-
-import tomllib
 
 logger = logging.getLogger("update.py")
 
@@ -51,14 +50,14 @@ MODULE_TEMPLATE_NORMCAP_GIT = {
 
 
 def get_pypi_info(package: str, version: str | None = None):
-    version = f"/{version}" if version else ""
-    url = PYPI.format(package=package, version=version)
+    suffix = f"/{version}" if version else ""
+    url = f"https://pypi.org/pypi/{package}{suffix}/json"
 
-    with urllib.request.urlopen(url) as response:
+    opener = urllib.request.build_opener(urllib.request.HTTPSHandler)
+    with opener.open(url) as response:
         json_text = response.read()
 
     return json.loads(json_text)
-
 
 def is_suitable(filename: str):
     filename = filename.lower()
@@ -73,24 +72,21 @@ def is_suitable(filename: str):
         return True
     if all(s in filename for s in ["jeepney", "none-any"]):
         return True
-    if all(s in filename for s in ["normcap", "none-any"]):
-        return True
-
-    return False
+    return all(s in filename for s in ["normcap", "none-any"])
 
 
 def get_release_info(package: str, version: str, python_version: str | None = None):
     files = get_pypi_info(package=package, version=version)["urls"]
     files = [f for f in files if is_suitable(f["filename"])]
 
-    python_version_int = int(python_version.replace('.', ''))
     if len(files) != 1 and python_version:
         # If there's no build for current python version, try lower ones.
         # This is necessary for zxing-cpp which now ship free-threaded version (unsupported by current KDE runtime)
-        for i in range( 5):
+        python_version_int = int(python_version.replace('.', ''))
+        for i in range(5):
             files = [f for f in files if f"cp{python_version_int - i}" in f["url"]]
             if files:
-                break 
+                break
 
     if len(files) != 1:
         raise ValueError(
@@ -153,14 +149,25 @@ def add_normcap(version: str, source: str) -> None:
     PYTHON_DEPS_JSON.write_text(json.dumps(python_deps, indent=4))
 
 
-def get_appropriate_runtime_version(deps: list[str]) -> str:
-    """Get PySide version in format '<major>.<minor>'."""
-    pyside = [d for d in deps if d.lower().startswith("pyside")][0]
-    pyside_version = pyside.split("==")[-1]
-    return ".".join(pyside_version.split(".")[:2])
+def get_appropriate_runtime_version() -> str:
+    """Get the latest available KDE Platform 6.x runtime from Flathub."""
+    output = run(
+        "flatpak remote-ls --columns=branch flathub org.kde.Platform"
+    )
+    branches = [
+        line.strip()
+        for line in output.splitlines()
+        if re.match(r"^6\.\d+$", line.strip())
+    ]
+    if not branches:
+        raise RuntimeError(
+            "No KDE Platform 6.x runtime found on Flathub remote."
+        )
+    branches.sort(key=lambda v: tuple(int(x) for x in v.split(".")))
+    return branches[-1]
 
 
-def set_runtime_version(version=str):
+def set_runtime_version(version: str) -> None:
     logger.info(f"Setting runtime version to {version} in {FLATPAK_YAML} ...")
     text = FLATPAK_YAML.read_text()
     text = re.sub(r'(runtime-version:) "\d+\.\d+"', f'\\1 "{version}"', text)
@@ -284,7 +291,7 @@ def main(args):
         normcap_deps = pyproject["project"]["dependencies"]
         git_ref = args.source
 
-    runtime_version = get_appropriate_runtime_version(deps=normcap_deps)
+    runtime_version = get_appropriate_runtime_version()
     python_version = get_python_version(runtime_version=runtime_version)
 
     # Make adjustments to build configs
