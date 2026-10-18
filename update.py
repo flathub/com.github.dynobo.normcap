@@ -152,13 +152,15 @@ def add_normcap(version: str, source: str) -> None:
 def get_appropriate_runtime_version() -> str:
     """Get the latest available KDE Platform 6.x runtime from Flathub."""
     output = run(
-        "flatpak remote-ls --columns=branch flathub org.kde.Platform"
+        "flatpak remote-ls --user --runtime --columns=ref flathub"
     )
-    branches = [
-        line.strip()
-        for line in output.splitlines()
-        if re.match(r"^6\.\d+$", line.strip())
-    ]
+    branches = []
+    for line in output.splitlines():
+        match = re.match(
+            r"^runtime/org\.kde\.Platform/[^/]+/(6\.\d+)$", line.strip()
+        )
+        if match:
+            branches.append(match.group(1))
     if not branches:
         raise RuntimeError(
             "No KDE Platform 6.x runtime found on Flathub remote."
