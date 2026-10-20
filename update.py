@@ -17,12 +17,18 @@ logger = logging.getLogger("update.py")
 
 PYPI = "https://pypi.org/pypi/{package}{version}/json"
 NORMCAP_REPO = "https://github.com/dynobo/normcap.git"
+NORMCAP_DIR = "normcap"  # Checkout location, relative to the current working directory
+
+COMMIT_SHA_RE = re.compile(r"^[0-9a-f]{40}$")
+# Branch, tag, sha or fully-qualified ref (e.g. refs/pull/<n>/head). Reject a leading '-' and
+# anything non-ref-like, so a value can never smuggle extra argv into run()'s cmd.split().
+SOURCE_RE = re.compile(r"^(?![.-])[A-Za-z0-9._/-]+$")
 
 PROJECT_ROOT = Path(__file__).parent
 PYTHON_DEPS_JSON = PROJECT_ROOT / "python3-dependencies.json"
 HATCHLING_DEPS_JSON = PROJECT_ROOT / "python3-hatchling.json"
 FLATPAK_YAML = PROJECT_ROOT / "com.github.dynobo.normcap.yml"
-PYPROJECT_TOML = PROJECT_ROOT / "normcap" / "pyproject.toml"
+PYPROJECT_TOML = PROJECT_ROOT / NORMCAP_DIR / "pyproject.toml"
 
 MODULE_TEMPLATE = {
     "name": "python3-PKG",
@@ -43,7 +49,7 @@ MODULE_TEMPLATE_NORMCAP_GIT = {
         {
             "type": "git",
             "url": NORMCAP_REPO,
-            "branch": "BRANCH",
+            "commit": "COMMIT",
         }
     ],
 }
@@ -116,6 +122,56 @@ def get_module(package_with_version: str, python_version: str | None = None) -> 
     return module
 
 
+def fetch_normcap(source: str) -> str:
+    """Check out normcap at `source` (sha, ref, branch or tag); return the commit SHA."""
+    if not SOURCE_RE.match(source):
+        raise ValueError(f"Invalid source '{source}'")
+
+    logger.info(f"Fetching NormCap from '{source}' ...")
+    shutil.rmtree(f"./{NORMCAP_DIR}", ignore_errors=True)
+
+    if COMMIT_SHA_RE.match(source) or source.startswith("refs/"):
+        # `git clone --branch` cannot handle plain SHAs or fully-qualified refs.
+        run(f"git init --quiet ./{NORMCAP_DIR}")
+        run(f"git -C ./{NORMCAP_DIR} remote add origin {NORMCAP_REPO}")
+        run(f"git -C ./{NORMCAP_DIR} fetch --depth=1 --quiet origin {source}")
+        run(f"git -C ./{NORMCAP_DIR} checkout --quiet --detach FETCH_HEAD")
+    else:
+        run(
+            f"git clone --depth=1 --quiet --branch {source} "
+            f"{NORMCAP_REPO} ./{NORMCAP_DIR}"
+        )
+
+    return run(f"git -C ./{NORMCAP_DIR} rev-parse HEAD").strip()
+
+
+def resolve_tag_commit(tag: str) -> str:
+    """Resolve a tag to the commit it points to (peeled, if it's an annotated tag)."""
+    if not SOURCE_RE.match(tag):
+        raise ValueError(f"Invalid tag '{tag}'")
+
+    logger.info(f"Resolving commit of tag '{tag}' ...")
+    # Both patterns are needed: with a pattern, git omits the peeled '^{}' line of
+    # annotated tags unless the peeled ref is requested explicitly.
+    output = run(f"git ls-remote --tags {NORMCAP_REPO} {tag} {tag}^{{}}")
+
+    commits = [
+        line.split()[0]
+        for line in output.splitlines()
+        if line.endswith(f"{tag}^{{}}")
+    ]
+    if not commits:  # Lightweight tag: the ref itself points to the commit
+        commits = [
+            line.split()[0]
+            for line in output.splitlines()
+            if line.endswith(f"refs/tags/{tag}")
+        ]
+    if len(commits) != 1:
+        raise RuntimeError(f"Could not resolve tag '{tag}' to a commit")
+
+    return commits[0]
+
+
 def add_normcap_dependencies(deps: list[str], python_version: str):
     logger.info(f"Adding modules for {', '.join(deps)} ...")
     python_deps = json.loads(PYTHON_DEPS_JSON.read_text())
@@ -129,7 +185,7 @@ def add_normcap_dependencies(deps: list[str], python_version: str):
     PYTHON_DEPS_JSON.write_text(json.dumps(python_deps, indent=4))
 
 
-def add_normcap(version: str, source: str) -> None:
+def add_normcap(version: str, source: str, commit: str) -> None:
     logger.info("Adding module for normcap ...")
     python_deps = json.loads(PYTHON_DEPS_JSON.read_text())
 
@@ -141,9 +197,9 @@ def add_normcap(version: str, source: str) -> None:
         module = json.loads(HATCHLING_DEPS_JSON.read_text())
         python_deps["modules"].append(module)
 
-        # Add normcap from git
+        # Add normcap from git, pinned to the exact commit
         module = deepcopy(MODULE_TEMPLATE_NORMCAP_GIT)
-        module["sources"][0]["branch"] = source
+        module["sources"][0]["commit"] = commit
         python_deps["modules"].append(module)
 
     PYTHON_DEPS_JSON.write_text(json.dumps(python_deps, indent=4))
@@ -176,18 +232,13 @@ def set_runtime_version(version: str) -> None:
     FLATPAK_YAML.write_text(text)
 
 
-def set_metadata_git_commit(ref: str):
-    logger.info(
-        f"Setting git commit for metadata to HEAD of '{ref}' in {FLATPAK_YAML} ..."
-    )
-    with urllib.request.urlopen(
-        f"https://api.github.com/repos/dynobo/normcap/commits/{ref}"
-    ) as response:
-        json_text = response.read()
-    commit = json.loads(json_text)
+def set_metadata_git_commit(commit: str) -> None:
+    if not COMMIT_SHA_RE.match(commit):
+        raise ValueError(f"Invalid commit '{commit}'")
 
+    logger.info(f"Setting git commit for metadata to '{commit}' in {FLATPAK_YAML} ...")
     text = FLATPAK_YAML.read_text()
-    text = re.sub(r"commit: .*", f"commit: {commit['sha']}", text)
+    text = re.sub(r"commit: .*", f"commit: {commit}", text)
     FLATPAK_YAML.write_text(text)
 
 
@@ -241,7 +292,10 @@ def init_logger() -> None:
 def parse_args() -> argparse.Namespace:
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument(
-        "source", default="pypi", nargs="?", help="'pypi', '<branch>' or '<tag>'."
+        "source",
+        default="pypi",
+        nargs="?",
+        help="'pypi', '<branch>', '<tag>', '<commit-sha>' or '<ref>'.",
     )
     arg_parser.add_argument(
         "--install",
@@ -282,25 +336,22 @@ def main(args):
         normcap_deps = normcap["info"]["requires_dist"]
         normcap_deps = [d for d in normcap_deps if '"build"' not in d]
         logger.info(f"Found version {normcap_version}, deps: {', '.join(normcap_deps)}")
-        git_ref = f"v{normcap_version}"
+        commit = resolve_tag_commit(f"v{normcap_version}")
     else:
-        logger.info(f"Cloning NormCap from '{args.source}' ...")
-        run("rm -rf ./normcap")
-        run(f"git clone --depth=1 --branch {args.source} {NORMCAP_REPO}")
+        commit = fetch_normcap(args.source)
         logger.info("Retrieving NormCap info from pyproject.toml ...")
         pyproject = tomllib.loads(PYPROJECT_TOML.read_text())
         normcap_version = pyproject["project"]["version"]
         normcap_deps = pyproject["project"]["dependencies"]
-        git_ref = args.source
 
     runtime_version = get_appropriate_runtime_version()
     python_version = get_python_version(runtime_version=runtime_version)
 
     # Make adjustments to build configs
     add_normcap_dependencies(deps=normcap_deps, python_version=python_version)
-    add_normcap(version=normcap_version, source=args.source)
+    add_normcap(version=normcap_version, source=args.source, commit=commit)
     set_runtime_version(version=runtime_version)
-    set_metadata_git_commit(ref=git_ref)
+    set_metadata_git_commit(commit=commit)
 
     # Install and run
     if args.install or args.run or args.bundle:
