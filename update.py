@@ -65,6 +65,11 @@ def get_pypi_info(package: str, version: str | None = None):
 
     return json.loads(json_text)
 
+
+CPYTHON_TAG_RE = re.compile(r"^cp3(\d+)$")
+TARGET_PYTHON_RE = re.compile(r"^3\.(\d+)")
+
+
 def is_suitable(filename: str):
     filename = filename.lower()
 
@@ -74,11 +79,40 @@ def is_suitable(filename: str):
         return True
     if all(s in filename for s in ["pyside6", "manylinux", "x86"]):
         return True
-    if all(s in filename for s in ["zxing", "abi3", "manylinux", "x86"]):
+    if all(s in filename for s in ["zxing", "manylinux", "x86"]):
         return True
     if all(s in filename for s in ["jeepney", "none-any"]):
         return True
     return all(s in filename for s in ["normcap", "none-any"])
+
+
+def is_compatible(filename: str, python_version: str) -> bool:
+    """Check a wheel's python and abi tags against the runtime's python version."""
+    try:
+        _prefix, python_tag, abi_tag, _platform_tag = filename.lower().rsplit("-", 3)
+    except ValueError:
+        return False
+
+    if python_tag.startswith("py"):
+        return abi_tag == "none"
+    if abi_tag.endswith("t"):
+        # Free-threaded builds (cp313t, cp314t) don't run on the GIL-enabled runtime.
+        return False
+
+    match = CPYTHON_TAG_RE.match(python_tag)
+    target_match = TARGET_PYTHON_RE.match(python_version)
+    if not match or not target_match:
+        return False
+
+    wheel_minor = int(match.group(1))
+    target_minor = int(target_match.group(1))
+
+    if abi_tag == "abi3":
+        # abi3 wheels run on the tagged python version and every newer one.
+        return wheel_minor <= target_minor
+
+    # All other wheels are bound to exactly one python release.
+    return wheel_minor == target_minor
 
 
 def get_release_info(package: str, version: str, python_version: str | None = None):
@@ -86,13 +120,9 @@ def get_release_info(package: str, version: str, python_version: str | None = No
     files = [f for f in files if is_suitable(f["filename"])]
 
     if len(files) != 1 and python_version:
-        # If there's no build for current python version, try lower ones.
-        # This is necessary for zxing-cpp which now ship free-threaded version (unsupported by current KDE runtime)
-        python_version_int = int(python_version.replace('.', ''))
-        for i in range(5):
-            files = [f for f in files if f"cp{python_version_int - i}" in f["url"]]
-            if files:
-                break
+        # Pick the build matching the runtime's python version. Packages like zxing-cpp
+        # ship one wheel per CPython release, plus free-threaded ones we can't use.
+        files = [f for f in files if is_compatible(f["filename"], python_version)]
 
     if len(files) != 1:
         raise ValueError(
@@ -172,12 +202,57 @@ def resolve_tag_commit(tag: str) -> str:
     return commits[0]
 
 
+REQUIREMENT_NAME_RE = re.compile(r"^[A-Za-z0-9._-]+")
+
+
+def normalize_name(name: str) -> str:
+    return re.sub(r"[-_.]+", "-", name).lower()
+
+
+def sort_by_dependencies(deps: list[str]) -> list[str]:
+    """Order pinned deps, so a package is listed after the packages it requires.
+
+    Pip installs each module from a directory that only contains that single wheel, so
+    a dependency (e.g. shiboken6 for pyside6-essentials) has to be installed first.
+    """
+    names = {normalize_name(dep.split("==")[0]): dep for dep in deps}
+    requires: dict[str, set[str]] = {}
+
+    for dep in deps:
+        package, version = dep.split("==")
+        requirements = get_pypi_info(package=package, version=version)["info"][
+            "requires_dist"
+        ]
+        requires[normalize_name(package)] = {
+            normalize_name(match.group(0))
+            for requirement in requirements or []
+            if (match := REQUIREMENT_NAME_RE.match(requirement))
+            and normalize_name(match.group(0)) in names
+        }
+
+    ordered: list[str] = []
+    visited: set[str] = set()
+
+    def visit(name: str) -> None:
+        if name in visited:  # Also protects against cyclic requirements
+            return
+        visited.add(name)
+        for required in sorted(requires[name]):
+            visit(required)
+        ordered.append(names[name])
+
+    for dep in deps:
+        visit(normalize_name(dep.split("==")[0]))
+
+    return ordered
+
+
 def add_normcap_dependencies(deps: list[str], python_version: str):
     logger.info(f"Adding modules for {', '.join(deps)} ...")
     python_deps = json.loads(PYTHON_DEPS_JSON.read_text())
 
     new_modules = []
-    for dep in deps:
+    for dep in sort_by_dependencies(deps):
         module = get_module(package_with_version=dep, python_version=python_version)
         new_modules.append(module)
 
